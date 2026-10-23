@@ -192,8 +192,21 @@
       ul.appendChild(li);
     }
     $("card-bio").textContent = Buddy.bio(buddy);
-    $("card").showModal();
+    showDialog($("card"));
   }
+
+  // Older Safari has no showModal(); fall back to the open attribute.
+  function showDialog(d) {
+    if (typeof d.showModal === "function") return d.showModal();
+    d.classList.add("fallback");
+    d.setAttribute("open", "");
+  }
+  $("card").querySelector("form").addEventListener("submit", (e) => {
+    const d = $("card");
+    if (typeof d.showModal === "function") return;
+    e.preventDefault();
+    d.removeAttribute("open");
+  });
   $("btn-card").addEventListener("click", openCard);
 
   $("btn-mute").addEventListener("click", () => {

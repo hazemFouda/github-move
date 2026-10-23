@@ -94,7 +94,7 @@ button.ghost.danger:hover, button.ghost.danger.armed { color: var(--danger); bor
 }
 @keyframes pop { from { transform: scale(.8); opacity: 0; } }
 
-.hearts { position: absolute; inset: 0; pointer-events: none; }
+.hearts { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; }
 .heart { position: absolute; color: var(--heart); animation: float 1.2s ease-out forwards; }
 @keyframes float { to { transform: translateY(-70px); opacity: 0; } }
 
@@ -122,7 +122,13 @@ dialog {
   background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 14px;
   width: min(380px, calc(100vw - 32px)); padding: 20px;
 }
-dialog::backdrop { background: rgb(0 0 0 / .4); }
+dialog::backdrop { background: rgba(0, 0, 0, .4); }
+/* Fallback for browsers without <dialog> support (Safari before 15.4). */
+dialog.fallback[open] {
+  display: block; position: fixed; top: 50%; left: 50%; z-index: 10;
+  transform: translate(-50%, -50%); max-height: calc(100% - 32px); overflow-y: auto;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .4);
+}
 dialog h2 { margin: 12px 0 0; font-size: 18px; text-align: center; }
 #card-meta { text-align: center; margin: 2px 0 14px; font-size: 12px; }
 .stats { list-style: none; padding: 0; margin: 0 0 12px; font-size: 12px; }

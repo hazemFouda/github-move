@@ -2,7 +2,11 @@
 
 A tiny ASCII companion that lives in your browser, inspired by the `/buddy` pet in Claude Code.
 
-## Run it
+## Play it
+
+Live at **https://hazemfouda.github.io/github-move/** once GitHub Pages is on (Settings → Pages → Deploy from a branch → `claude/buddy-like-app-tc6afz`, `/ (root)`).
+
+## Run it locally
 
 No build step. Open `index.html` in a browser, or serve the folder:
 

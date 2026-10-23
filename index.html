@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buddy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>buddy<span class="cursor">_</span></h1>
+      <div class="top-actions">
+        <button id="btn-card" class="ghost" hidden>card</button>
+        <button id="btn-mute" class="ghost" hidden>mute</button>
+        <button id="btn-release" class="ghost danger" hidden>release</button>
+      </div>
+    </header>
+
+    <!-- Hatch screen -->
+    <section id="hatch" class="panel">
+      <p class="dim">An egg is waiting. Who's it for?</p>
+      <form id="hatch-form" class="row">
+        <input id="hatch-name" maxlength="40" placeholder="your name or handle" autocomplete="off" required>
+        <button type="submit">hatch</button>
+      </form>
+      <p class="dim small">Same name → same buddy. Every time.</p>
+      <pre id="egg" class="sprite egg"></pre>
+    </section>
+
+    <!-- Buddy screen -->
+    <section id="home" class="panel" hidden>
+      <div class="stage">
+        <div id="bubble" class="bubble" hidden></div>
+        <pre id="sprite" class="sprite" title="click to pet"></pre>
+        <div id="hearts" class="hearts" aria-hidden="true"></div>
+        <div class="nameplate">
+          <span id="b-name"></span>
+          <span id="b-rarity" class="rarity"></span>
+        </div>
+      </div>
+
+      <div class="meters">
+        <label>mood <meter id="m-mood" min="0" max="100" low="30" high="70" optimum="100"></meter></label>
+        <label>energy <meter id="m-energy" min="0" max="100" low="30" high="70" optimum="100"></meter></label>
+      </div>
+
+      <div class="row actions">
+        <button data-act="pet">pet</button>
+        <button data-act="feed">feed</button>
+        <button data-act="play">play</button>
+        <button data-act="nap">nap</button>
+      </div>
+
+      <form id="chat-form" class="row prompt">
+        <span class="caret">&gt;</span>
+        <input id="chat" maxlength="200" placeholder="say something, or describe what you're working on…" autocomplete="off">
+      </form>
+      <ol id="log" class="log"></ol>
+    </section>
+  </main>
+
+  <dialog id="card">
+    <pre id="card-sprite" class="sprite"></pre>
+    <h2 id="card-name"></h2>
+    <p id="card-meta" class="dim"></p>
+    <ul id="card-stats" class="stats"></ul>
+    <p id="card-bio" class="bio"></p>
+    <form method="dialog"><button>close</button></form>
+  </dialog>
+
+  <script src="buddy.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

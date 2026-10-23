@@ -203,8 +203,20 @@
     save();
   });
 
+  // Two-step release: the first click arms the button, a second click within 3s confirms.
+  let releaseTimer = null;
   $("btn-release").addEventListener("click", () => {
-    if (!confirm(`Release ${buddy.name}? You can hatch them again with the same name.`)) return;
+    const btn = $("btn-release");
+    if (!btn.classList.contains("armed")) {
+      btn.classList.add("armed");
+      btn.textContent = `release ${buddy.name}?`;
+      releaseTimer = setTimeout(() => {
+        btn.classList.remove("armed");
+        btn.textContent = "release";
+      }, 3000);
+      return;
+    }
+    clearTimeout(releaseTimer);
     try { localStorage.removeItem(STORE); } catch { /* ignore */ }
     location.reload();
   });
